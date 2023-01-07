@@ -1,0 +1,85 @@
+//===============佔位
+//font
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
+@font-face {
+    font-family: 'Optima';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Optima'), url('../font/OPTIMA.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'Optima Bold';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Optima Bold'), url('../font/OPTIMA_B.woff') format('woff');
+}
+
+%optima-b{
+    font-family: 'Optima';
+    font-weight: 700;
+}
+
+%optima{
+    font-family: 'Optima';
+    font-weight: 400;
+}
+
+%inter{
+    font-family: 'inter';
+    font-weight: 400;
+}
+
+//排版 (flex、grid的在mixin)
+%mar-auto{
+    margin: auto;
+}
+
+// %page-content{
+//     margin: auto;
+//     padding: 0 16px;
+//     max-width: 1300px;
+//     box-sizing: border-box;
+// }
+
+%dis-bl{
+    display: block;
+}
+
+%dis-in-bl{
+    display: inline-block;
+}
+
+%dis-none{
+    display: none;
+}
+
+%dis-grid{
+    display: grid;
+}
+
+%border-box{
+    box-sizing: border-box;
+}
+
+//定位(absolute在mixin)
+%relative{
+    position: relative;
+}
+
+%sticky{
+    position: sticky;
+    top: 0;
+    left: 0;
+}
+
+//font
+%text-a-c{
+    text-align: center;
+}
+
+//互動
+%pointer{
+    cursor: pointer;
+}

@@ -1,0 +1,104 @@
+//base
+@import 'base/var';
+@import 'base/reset';
+@import 'base/extend';
+
+//mixins
+@import 'mixins/mixins';
+
+//layout
+@import 'layout/footer';
+@import 'layout/header';
+
+//page
+@import 'page/index';
+
+img{width: 100%;}
+
+body, .body-1{
+    font-size: $body;
+    line-height: 150%;
+    @extend %inter;
+}
+
+.body-2{
+    font-size: $body;
+    line-height: 130%;
+    @extend %optima;
+}
+
+h1, .h1{
+    font-size: $h1;
+    line-height: 86%;
+    @extend %optima-b;
+    
+    @include mini-pad{
+        font-size: $h1-m;
+    }
+}
+
+h2, .h2{
+    font-size: $h2;
+    line-height: 130%;
+    @extend %optima;
+    
+    @include mini-pad{
+        font-size: $h2-m;
+    }
+}
+
+h3, .h3{
+    font-size: $h3;
+    line-height: 130%;
+    @extend %optima;
+    
+    @include mini-pad{
+        font-size: $h3-m;
+    }
+}
+
+h4, .h4{
+    font-size: $h4;
+    line-height: 130%;
+    @extend %optima-b;
+    
+    @include mini-pad{
+        font-size: $h4-m;
+    }
+}
+
+.min{
+    font-size: $h4;
+    line-height: 130%;
+    @extend %optima;
+}
+
+button, .btn{
+    font-size: $btn;
+    line-height: 130%;
+    @extend %optima;
+
+    @include mini-pad{
+        font-size: $btn-m;
+    }
+}
+
+.dis-1{
+    font-size: $dis-1;
+    line-height: 130%;
+    @extend %optima;
+
+    @include mini-pad{
+        font-size: $dis-1;
+    }
+}
+
+.dis-2{
+    font-size: $dis-2;
+    line-height: 130%;
+    @extend %optima;
+
+    @include mini-pad{
+        font-size: $dis-2;
+    }
+}

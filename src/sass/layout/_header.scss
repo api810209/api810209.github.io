@@ -1,0 +1,390 @@
+$index-color: white;
+$header-padding:1.5em 2em;
+$header-padding-m:1em;
+
+//首頁、一般頁面
+#index-header, #else-header{
+    width: 100%;
+    padding: $header-padding;
+    @include fixed;
+    z-index: 99;
+    @include flex($j-c:space-between);
+    gap: 32px;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.44) 0%, rgba(0, 0, 0, 0) 100%);
+    @extend %border-box, %relative;
+
+    @include mini-pad{
+        padding: $header-padding-m;
+    }
+    
+    >h1{
+        max-width: 245px;
+        width: 100%;
+        color: transparent;
+        @extend %relative;
+
+        @include mini-pad{
+            max-width: 125px;
+        }
+
+        >a{
+            @include absolute;
+        }
+    }
+
+    >nav{
+        max-width: 776px;
+        width: calc(100% - 277px);
+
+        @include pad{
+            display: none;
+        }
+
+        >ul{
+            @include flex($j-c:space-between, $a-i:center);
+    
+            >li{
+                @extend %relative;
+
+                &.hav-child{
+                    @extend %pointer;
+
+                    >ul{
+                        width: 130%;
+                        padding: 10px 0 0;
+                        @include absolute($top:48px, $left:50%);
+                        transform: translateX(-50%) scale(0);
+                        
+                        li{
+                            width: 100%;
+                            
+                            >a{
+                                padding: 15px 20px;
+                                color: $e-mainB;
+                                background-color: white;
+                                @include transition($attr:background-color, $s:0.3s);
+                                @extend %border-box, %dis-bl;
+                            }
+                            
+                            &:hover{
+                                >a{
+                                    background-color: $e-formfocus;
+                                }
+                            }
+                        }
+                    }
+
+                    &:hover{
+                        >ul{
+                            transform: translateX(-50%) scale(1);
+                        }
+                    }
+                }
+
+                >a{
+                    color: $index-color;
+                    @extend %text-a-c, %dis-bl;
+                }
+            }
+    
+            >li:last-of-type{
+                @include flex;
+    
+                a{line-height: 1em;}
+    
+                a:first-of-type{
+                    margin-right: 1.5em;
+                    border-right: 1px solid $index-color;
+                    padding-right: 1.5em;
+                }
+            }
+        }
+    }
+
+    .hamber, >.mobile{
+        @extend %dis-none;
+    }
+    
+    .hamber{
+        padding: 0;
+        width: 36px;
+        height: 36px;
+        background-color: transparent;
+        
+        @include pad{display: block;}
+        @include mini-pad{
+            width: 24px;
+            height: 24px;
+        }
+
+        &::before{
+            content: '';
+            width: 100%;
+            height: 4px;
+            background-color: white;
+            box-shadow: 0 -10px 0 white, 0 10px 0 white;
+            @extend %dis-bl;
+            
+            @include mini-pad{
+                height: 3px;
+                box-shadow: 0 -7px 0 white, 0 7px 0 white;
+            }
+        }
+    }
+
+    >.mobile{
+        width: 100%;
+        height: 100vh;
+        @include absolute($top:0, $left:0);
+        background: linear-gradient(0deg, #D3D3D3 0%, #FFFFFF 100%);
+        overflow: auto;
+        @extend %border-box;
+
+        @media screen and (min-width:1025px) {
+            display: none !important;
+        }
+        
+        a{color: $e-black;}
+
+        .mobile-box{
+            height: 100%;
+            @include flex($d:column, $j-c:space-between);
+
+            .mobile-content{
+                padding: $header-padding;
+                
+                @include mini-pad{
+                    padding: $header-padding-m;
+                }
+    
+                .close{
+                    float: right;
+                    padding: 0;
+                    width: 36px;
+                    height: 36px;
+                    background-color: transparent;
+                    @extend %relative;
+        
+                    @include mini-pad{
+                        width: 24px;
+                        height: 24px;
+                    }
+        
+                    &::before, &::after{
+                        content: '';
+                        width: 100%;
+                        height: 4px;
+                        background-color: $e-black;
+                        @include absolute($top:50%, $left:50%);
+                        transform: translate(-50%, -50%) rotate(45deg);
+                        @extend %dis-bl;
+        
+                        @include mini-pad{height: 3px;}
+                    }
+                    
+                    &::after{
+                        transform: translate(-50%, -50%) rotate(135deg);
+                    }
+                }
+        
+                .mobile-wrapper{
+                    margin: 3.5em 0 2em;
+                    border-bottom: 1px solid $e-decGray;
+                    padding-bottom: 2em;
+                    @include flex;
+    
+                    a{line-height: 1em;}
+        
+                    a:first-of-type{
+                        margin-right: 1.5em;
+                        border-right: 1px solid $e-black;
+                        padding-right: 1.5em;
+                    }
+                }
+        
+                >nav{
+                    margin-bottom: 5em;
+        
+                    >ul{
+                        >li{
+                            margin-bottom: 2em;
+                        }
+
+                        >.hav-child{
+                            >a{
+                                @include flex;
+                                gap: 10px;
+
+                                &::after{
+                                    content: '';
+                                    width: 24px;
+                                    height: 24px;
+                                    @include bgi($position:center center){
+                                        background-image: url(../img/select_arr.svg);
+                                    };
+                                    @extend %dis-bl;
+                                }
+                            }
+
+                            >ul{
+                                padding-left: 16px;
+                                @extend %border-box, %dis-none;
+
+                                >li{
+                                    padding: 8px 0;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+    
+            >footer{
+                width: 100%;
+                @extend %dis-bl;
+            }
+        }       
+    }
+}
+
+#else-header{
+    background: linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%);
+    backdrop-filter: blur(2px);
+
+    >nav{
+        >ul{
+            li>a{
+                color: $e-mainB;
+            }
+
+            li:last-of-type{
+                a:first-of-type{
+                    border-right: 1px solid $e-mainB;
+                }
+            }
+        }
+    }
+
+    .hamber{
+        &::before{
+            background-color: $e-mainB;
+            box-shadow: 0 -10px 0 $e-mainB, 0 10px 0 $e-mainB;
+            
+            @include mini-pad{
+                box-shadow: 0 -7px 0 $e-mainB, 0 7px 0 $e-mainB;
+            }
+        }
+    }
+}
+
+// 登入註冊
+#loginSignup-header{
+    width: 100%;
+    padding: $header-padding;
+    padding-bottom: 0;
+    @include absolute($top:0, $left:0, $z-i:99);
+    @extend %border-box, %relative;
+    
+    @include mini-pad{
+        padding: $header-padding-m;
+    }
+    
+    >h1{
+        width: 100%;
+        height: 46px;
+        border-bottom: 1px solid $e-blue;
+        padding-bottom: 1.5em;
+        color: transparent;
+        @extend %relative;
+        
+        @include mini-pad{
+            height: 23px;
+            padding-bottom: 1em;
+        }
+        
+        >a{
+            max-width: 245px;
+            @include absolute($left:50%);
+            transform: translateX(-50%);
+            
+            @include mini-pad{
+                max-width: 125px;
+            }
+        }
+    }
+}
+
+//會員中心
+#my-account-header{
+    width: 100%;
+    padding: $header-padding;
+    padding-bottom: 0;
+    @include absolute($top:0, $left:0, $z-i:99);
+    @extend %border-box, %relative;
+    
+    @include mini-pad{
+        padding: $header-padding-m;
+    }
+    
+    .my-account-header-content{
+        width: 100%;
+        border-bottom: 1px solid $e-blue;
+        padding-bottom: 1.5em;
+        @include flex($j-c:space-between, $a-i:center);
+        gap: 32px;
+        
+        @include mini-pad{
+            padding-bottom: 1em;
+            gap: 24px;
+        }
+        
+        >h1{
+            max-width: 245px;
+            width: 100%;
+            height: 46px;
+            color: transparent;
+            @extend %relative;
+            
+            @include mini-pad{
+                max-width: 125px;
+                height: 23px;
+            }
+            
+            >a{
+                width: 100%;
+                @include absolute($left:0%);
+            }
+        }
+
+        .links{
+            @include flex;
+    
+            a{
+                line-height: 1em;
+                color: $e-black;
+            }
+
+            a:first-of-type{
+                margin-right: 1.5em;
+                border-right: 1px solid $e-black;
+                padding-right: 1.5em;
+                
+                @include mini-pad{
+                    margin-right: 1em;
+                    padding-right: 1em;
+                }
+            }
+        }
+    }
+
+    //保時捷專屬
+    &.porsche{
+        .my-account-header-content{
+            border-color: $e-decGray;
+
+            >h1{
+                max-width: 174px;
+            }
+        }
+    }
+}

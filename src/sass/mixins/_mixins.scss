@@ -1,0 +1,70 @@
+//斷點
+@mixin pad {
+    @media screen and (max-width:$pad) {
+        @content;
+    }
+}
+
+@mixin mini-pad {
+    @media screen and (max-width:$mini-pad) {
+        @content;
+    }
+}
+
+@mixin mobile {
+    @media screen and (max-width:$mobile) {
+        @content;
+    }
+}
+
+//dis-flex
+@mixin flex($f:flex, $w:unset, $d:unset, $j-c:unset, $a-c:unset, $a-i:unset) {
+    display: $f;
+    flex-wrap: $w;
+    flex-direction: $d;
+    justify-content: $j-c;
+    align-items: $a-i;
+    @content;
+}
+
+//dis-grid
+@mixin basic_grid($grid-num1, $grid-num2, $grid-r-gap, $grid-c-gap) {
+    display: grid;
+    grid-template-columns: repeat($grid-num1, $grid-num2);
+    grid-column-gap: $grid-c-gap;
+    grid-row-gap: $grid-r-gap;
+    @content;
+}
+
+//定位
+@mixin absolute($top:unset, $right:unset, $bottom:unset, $left:unset, $z-i:0) {
+    position: absolute;
+    top: $top;
+    right: $right;
+    bottom: $bottom;
+    left: $left;
+    z-index: $z-i;
+}
+
+@mixin fixed($top:0, $right:unset, $bottom:unset, $left:0, $z-i:0) {
+    position: fixed;
+    top: $top;
+    right: $right;
+    bottom: $bottom;
+    left: $left;
+    z-index: $z-i;
+}
+
+//背景圖-不含url
+@mixin bgi($re:no-repeat, $size:unset, $position:unset) {
+    background-repeat: $re;
+    background-size: $size;
+    background-position: $position;
+    @content;
+}
+
+//transition
+@mixin transition($attr:all, $s) {
+    transition: $attr $s;
+    @content;
+}

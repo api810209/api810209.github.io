@@ -1,0 +1,73 @@
+footer{
+    border-top: 7px solid $e-mainB;
+    padding: 2em;
+    @include flex($j-c:space-between);
+    background-color: $e-black;
+    @extend %border-box, %relative;
+
+    @include pad{
+        display: none;
+    }
+
+    @include mini-pad{
+        padding: 1em;
+    }
+
+    &::before{
+        content: '';
+        width: 80%;
+        height: 7px;
+        clip-path: polygon(0 0, 100% 0%, 99.5% 100%, 0% 100%);
+        background-color: $e-mainO;
+        @include absolute($top:-7px, $left:0);
+        
+        @include pad{
+            clip-path: polygon(0 0, 100% 0%, 99% 100%, 0% 100%);
+        }
+    }
+
+    >img{
+        max-width: 160px;
+        width: 100%;
+        @extend %dis-bl;
+
+        @include pad{
+            margin-bottom: 30px;
+        }
+    }
+
+    address{
+        max-width: 1100px;
+        width: calc(100% - 192px);
+        @include flex($j-c:space-between);
+        
+        @include pad{
+            width: 100%;
+            @include flex($d:column);
+            gap: 15px;
+        }
+
+        .footer-content{
+            flex: 1;
+
+            li, p, a{
+                color: $e-decGray;
+            }
+        }
+    }
+
+    // 保時捷專屬
+    &.porsche{
+        justify-content: center;
+        .footer-content{
+            gap: 10px;
+            @extend %dis-grid;
+            p{
+                color: white;
+                @extend %text-a-c;
+
+                a{color: white;}
+            }
+        }
+    }
+}
