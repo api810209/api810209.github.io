@@ -1,389 +1,175 @@
-$index-color: white;
-$header-padding:1.5em 2em;
-$header-padding-m:1em;
-
-//首頁、一般頁面
-#index-header, #else-header{
+header{
     width: 100%;
-    padding: $header-padding;
-    @include fixed;
-    z-index: 99;
-    @include flex($j-c:space-between);
-    gap: 32px;
-    background: linear-gradient(180deg, rgba(0, 0, 0, 0.44) 0%, rgba(0, 0, 0, 0) 100%);
-    @extend %border-box, %relative;
+    @include flex($j-c:space-between, $a-i:center);
+    padding: 32px 3% 0;
+    @include absolute($top:0, $left:0);
+    @extend %border-box;
 
-    @include mini-pad{
-        padding: $header-padding-m;
-    }
-    
-    >h1{
-        max-width: 245px;
-        width: 100%;
+    h1{
+        min-width: 128px;
+        min-height: 32px;
         color: transparent;
         @extend %relative;
 
         @include mini-pad{
-            max-width: 125px;
+            min-width: 96px;
+            min-height: 24px;
         }
 
-        >a{
+        a{
+            width: 100%;
+            height: 100%;
             @include absolute;
-        }
-    }
+            @include bgi($size:contain){
+                background-image: url(../img/original_logo.svg);
+            };
+            @include transition($s:0.5s);
+            
+            &::before{
+                content: '';
+                width: 11px;
+                height: 11px;
+                margin-left: auto;
+                @include bgi($size:contain){
+                    background-image: url(../img/original_logo_dec.svg);
+                };
+                @include transition($s:0.5s);
+                @extend %dis-bl;
 
-    >nav{
-        max-width: 776px;
-        width: calc(100% - 277px);
-
-        @include pad{
-            display: none;
-        }
-
-        >ul{
-            @include flex($j-c:space-between, $a-i:center);
-    
-            >li{
-                @extend %relative;
-
-                &.hav-child{
-                    @extend %pointer;
-
-                    >ul{
-                        width: 130%;
-                        padding: 10px 0 0;
-                        @include absolute($top:48px, $left:50%);
-                        transform: translateX(-50%) scale(0);
-                        
-                        li{
-                            width: 100%;
-                            
-                            >a{
-                                padding: 15px 20px;
-                                color: $e-mainB;
-                                background-color: white;
-                                @include transition($attr:background-color, $s:0.3s);
-                                @extend %border-box, %dis-bl;
-                            }
-                            
-                            &:hover{
-                                >a{
-                                    background-color: $e-formfocus;
-                                }
-                            }
-                        }
-                    }
-
-                    &:hover{
-                        >ul{
-                            transform: translateX(-50%) scale(1);
-                        }
-                    }
-                }
-
-                >a{
-                    color: $index-color;
-                    @extend %text-a-c, %dis-bl;
+                @include mini-pad{
+                    width: 8px;
+                    height: 8px;
                 }
             }
-    
-            >li:last-of-type{
-                @include flex;
-    
-                a{line-height: 1em;}
-    
-                a:first-of-type{
-                    margin-right: 1.5em;
-                    border-right: 1px solid $index-color;
-                    padding-right: 1.5em;
+        }
+
+        &:hover, &:active{
+            a{
+                background-image: url(../img/original_logo_hover.svg);
+
+                &::before{
+                    background-image: url(../img/original_logo_dec_hover.svg);
                 }
             }
         }
     }
 
-    .hamber, >.mobile{
-        @extend %dis-none;
-    }
-    
-    .hamber{
-        padding: 0;
-        width: 36px;
-        height: 36px;
-        background-color: transparent;
+    button.hamber{
+        height: 43px;
+        border-radius: 72px;
+        padding: 16px;
+        background: $original-light-Y;
+        box-shadow: 0px 4px 32px -8px rgba(172, 172, 172, 0.2);
+        z-index: 1;
+        @extend %border-box, %dis-none;
         
-        @include pad{display: block;}
-        @include mini-pad{
-            width: 24px;
-            height: 24px;
+        @include pad{
+            @include flex($d:column, $j-c:space-between, $a-i:flex-end);
         }
 
         &::before{
             content: '';
-            width: 100%;
-            height: 4px;
-            background-color: white;
-            box-shadow: 0 -10px 0 white, 0 10px 0 white;
+            width: 16px;
+            height: 1px;
+            background: $original-O;
+            box-shadow: 0px 5px 0px 0px $original-O;
             @extend %dis-bl;
-            
-            @include mini-pad{
-                height: 3px;
-                box-shadow: 0 -7px 0 white, 0 7px 0 white;
-            }
+        }
+
+        &::after{
+            content: '';
+            width: 10px;
+            height: 1px;
+            background: $original-O;
+            @extend %dis-bl;
         }
     }
 
-    >.mobile{
-        width: 100%;
-        height: 100vh;
-        @include absolute($top:0, $left:0);
-        background: linear-gradient(0deg, #D3D3D3 0%, #FFFFFF 100%);
-        overflow: auto;
-        @extend %border-box;
-
-        @media screen and (min-width:1025px) {
-            display: none !important;
+    nav{
+        @include pad{
+            display: none;
+            width: 40%;
+            @include absolute($top:0, $right:0);
         }
-        
-        a{color: $e-black;}
 
-        .mobile-box{
-            height: 100%;
-            @include flex($d:column, $j-c:space-between);
-
-            .mobile-content{
-                padding: $header-padding;
-                
-                @include mini-pad{
-                    padding: $header-padding-m;
-                }
-    
-                .close{
-                    float: right;
-                    padding: 0;
-                    width: 36px;
-                    height: 36px;
-                    background-color: transparent;
-                    @extend %relative;
-        
-                    @include mini-pad{
-                        width: 24px;
-                        height: 24px;
-                    }
-        
-                    &::before, &::after{
-                        content: '';
-                        width: 100%;
-                        height: 4px;
-                        background-color: $e-black;
-                        @include absolute($top:50%, $left:50%);
-                        transform: translate(-50%, -50%) rotate(45deg);
-                        @extend %dis-bl;
-        
-                        @include mini-pad{height: 3px;}
-                    }
-                    
-                    &::after{
-                        transform: translate(-50%, -50%) rotate(135deg);
-                    }
-                }
-        
-                .mobile-wrapper{
-                    margin: 3.5em 0 2em;
-                    border-bottom: 1px solid $e-decGray;
-                    padding-bottom: 2em;
-                    @include flex;
-    
-                    a{line-height: 1em;}
-        
-                    a:first-of-type{
-                        margin-right: 1.5em;
-                        border-right: 1px solid $e-black;
-                        padding-right: 1.5em;
-                    }
-                }
-        
-                >nav{
-                    margin-bottom: 5em;
-        
-                    >ul{
-                        >li{
-                            margin-bottom: 2em;
-                        }
-
-                        >.hav-child{
-                            >a{
-                                @include flex;
-                                gap: 10px;
-
-                                &::after{
-                                    content: '';
-                                    width: 24px;
-                                    height: 24px;
-                                    @include bgi($position:center center){
-                                        background-image: url(../img/select_arr.svg);
-                                    };
-                                    @extend %dis-bl;
-                                }
-                            }
-
-                            >ul{
-                                padding-left: 16px;
-                                @extend %border-box, %dis-none;
-
-                                >li{
-                                    padding: 8px 0;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-    
-            >footer{
-                width: 100%;
-                @extend %dis-bl;
-            }
-        }       
-    }
-}
-
-#else-header{
-    background: linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%);
-    backdrop-filter: blur(2px);
-
-    >nav{
-        >ul{
-            li>a{
-                color: $e-mainB;
-            }
-
-            li:last-of-type{
-                a:first-of-type{
-                    border-right: 1px solid $e-mainB;
-                }
-            }
-        }
-    }
-
-    .hamber{
-        &::before{
-            background-color: $e-mainB;
-            box-shadow: 0 -10px 0 $e-mainB, 0 10px 0 $e-mainB;
-            
-            @include mini-pad{
-                box-shadow: 0 -7px 0 $e-mainB, 0 7px 0 $e-mainB;
-            }
-        }
-    }
-}
-
-// 登入註冊
-#loginSignup-header{
-    width: 100%;
-    padding: $header-padding;
-    padding-bottom: 0;
-    @include absolute($top:0, $left:0, $z-i:99);
-    @extend %border-box, %relative;
-    
-    @include mini-pad{
-        padding: $header-padding-m;
-    }
-    
-    >h1{
-        width: 100%;
-        height: 46px;
-        border-bottom: 1px solid $e-blue;
-        padding-bottom: 1.5em;
-        color: transparent;
-        @extend %relative;
-        
         @include mini-pad{
-            height: 23px;
-            padding-bottom: 1em;
+            width: 55%;
         }
-        
-        >a{
-            max-width: 245px;
-            @include absolute($left:50%);
-            transform: translateX(-50%);
-            
-            @include mini-pad{
-                max-width: 125px;
-            }
-        }
-    }
-}
 
-//會員中心
-#my-account-header{
-    width: 100%;
-    padding: $header-padding;
-    padding-bottom: 0;
-    @include absolute($top:0, $left:0, $z-i:99);
-    @extend %border-box, %relative;
-    
-    @include mini-pad{
-        padding: $header-padding-m;
-    }
-    
-    .my-account-header-content{
-        width: 100%;
-        border-bottom: 1px solid $e-blue;
-        padding-bottom: 1.5em;
-        @include flex($j-c:space-between, $a-i:center);
-        gap: 32px;
-        
-        @include mini-pad{
-            padding-bottom: 1em;
+        .nav-container{
+            @include flex($a-i:center);
             gap: 24px;
-        }
-        
-        >h1{
-            max-width: 245px;
-            width: 100%;
-            height: 46px;
-            color: transparent;
-            @extend %relative;
-            
-            @include mini-pad{
-                max-width: 125px;
-                height: 23px;
+            border-radius: 72px;
+            padding: 16px 40px;
+            background: $original-light-Y;
+            box-shadow: 0px 4px 32px -8px rgba(172, 172, 172, 0.2);
+    
+            @include pad{
+                @include flex($d:column-reverse, $j-c:center);
+                gap: 20px;
+                height: 100vh;
+                border-radius: 72px 0 0 0;
+                background: $original-O-rgba1;
+                backdrop-filter: blur(2px);
             }
-            
-            >a{
-                width: 100%;
-                @include absolute($left:0%);
-            }
-        }
-
-        .links{
-            @include flex;
     
             a{
-                line-height: 1em;
-                color: $e-black;
-            }
-
-            a:first-of-type{
-                margin-right: 1.5em;
-                border-right: 1px solid $e-black;
-                padding-right: 1.5em;
-                
-                @include mini-pad{
-                    margin-right: 1em;
-                    padding-right: 1em;
+                color: $original-black;
+                @include transition($s:0.5s);
+    
+                &:hover, &:active{
+                    color: $original-deep-O;
                 }
             }
-        }
-    }
+    
+            >ul{
+                @include flex;
+                gap: 40px;
 
-    //保時捷專屬
-    &.porsche{
-        .my-account-header-content{
-            border-color: $e-decGray;
+                @include pad{
+                    flex-direction: column;
+                }
+    
+                &::after{
+                    content: '';
+                    width: 1px;
+                    height: 24px;
+                    background: $original-O;
+                    transform: rotate(15deg) translateX(-5px);
+                    transform-origin: center center;
+                    @extend %dis-bl;
 
-            >h1{
-                max-width: 174px;
+                    @include pad{
+                        display: none;
+                    }
+                }
+            }
+    
+            >a{
+                @include flex($a-i:center);
+                gap: 4px;
+
+                @include pad{
+                    border-bottom: 1px solid $original-O;
+                    padding-bottom: 20px;
+                }
+    
+                &::before{
+                    content: '';
+                    width: 16px;
+                    height: 16px;
+                    @include bgi($size:cover){
+                        background-image: url(../img/cart.svg);
+                    };
+                    @include transition($s:0.5s);
+                    @extend %dis-bl;
+                }
+    
+                &:hover, &:active{
+                    &::before{
+                        background-image: url(../img/cart_hover.svg);
+                    }
+                }
             }
         }
     }

@@ -75,7 +75,7 @@ module.exports = {
             chunks: ['main',],
         }),
         new HtmlWebpackPartialsPlugin({
-            path: path.join(__dirname, './src/layout/index-header.html'),
+            path: path.join(__dirname, './src/layout/header.html'),
             location: 'header',
             template_filename: ['index.html']
         }),
