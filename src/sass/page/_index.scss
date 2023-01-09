@@ -1,0 +1,174 @@
+section.index-banner{
+    min-height: 800px;
+    margin-bottom: 200px;
+    padding-top: 180px;
+    background: linear-gradient(180deg, $original-O 90%, $original-light-gray 90%);
+    @extend %relative;
+
+    @include pad{
+        min-height: unset;
+        padding-bottom: 40px;
+        background: $original-O;
+    }
+
+    @include mini-pad{
+        padding-top: 120px;
+    }
+
+    &::before{
+        content: '';
+        width: 402px;
+        height: 223px;
+        @include bgi($size:cover){
+            background-image: url(../img/banner_dec.png);
+        };
+        @include absolute($top:0, $right:0, $z-i:0);
+        @extend %dis-bl;
+
+        @include mini-pad{
+            width: 233px;
+            height: 243px;
+        }
+    }
+
+    .banner-container{
+        @include flex($a-i:center);
+
+        @include pad{
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .imgSwiper, article{
+            flex: 1;
+
+            @include pad{
+                flex: unset
+            }
+        }
+
+        .imgSwiper{
+            @include pad{
+                max-width: 75%;
+                width: 100%;
+            }
+
+            .swiper-slide{
+                @extend %relative;
+
+                p{
+                    @include absolute($bottom:3%, $left:10%);
+                    color: $original-O;
+                    mix-blend-mode: overlay;
+
+                    @include pad{
+                        display: none;
+                    }
+                }
+            }
+        }
+
+        article{
+            padding: 0 24px;
+            color: $original-white;
+            @extend %border-box;
+
+            @include pad{
+                padding: 0;
+            }
+
+            h2{
+                @include flex;
+                margin-bottom: 10%;
+                padding-left: calc(100% / 6);
+                @extend %relative;
+
+                @include pad{
+                    @include absolute($top:30%, $z-i:1);
+                }
+
+                &::before{
+                    content: '/　CONCEPT';
+                    height: fit-content;
+                    font-size: $h3;
+                    line-height: 130%;
+                    @include absolute($top:0, $left:0);
+                    transform: rotate(90deg) translateY(-24px);
+                    transform-origin: top left;
+                    @extend %optima, %dis-bl;
+                    
+                    @include pad{
+                        transform: rotate(90deg) translateY(-36px);
+                    }
+                    
+                    @include mini-pad{
+                        font-size: $h3-m;
+                    }
+                }
+            }
+
+            .article-text{
+                width: 50%;
+                margin-left: auto;
+                padding-right: 8%;
+                @extend %border-box;
+
+                @include pad{
+                    width: 100%;
+                    padding-right: unset;
+                    padding: 0 24px;
+                }
+
+                p{
+                    margin-bottom: 8%;
+                }
+
+                a{
+                    @include flex($a-i:center);
+                    gap: 24px;
+                    color: $original-white;
+
+                    span{
+                        width: 64px;
+                        height: 64px;
+                        border: 1px solid $original-white;
+                        border-radius: 50%;
+                        @include transition($s:0.5s);
+                        @extend %relative;
+
+                        &::before{
+                            content: '';
+                            width: 18px;
+                            height: 18px;
+                            @include bgi($size:contain, $position:center center){
+                                background-image: url(../img/link_white.svg);
+                            };
+                            @include absolute($top:50%, $left:50%);
+                            transform: translate(-50%, -50%) rotate(0);
+                            @include transition($s:0.5s);
+                            @extend %dis-bl;
+                        }
+                    }
+
+                    &:hover{
+                        span{
+                            background: $original-white;
+
+                            &::before{
+                                background-image: url(../img/link_white_hover.svg);
+                                transform: translate(-50%, -50%) rotate(360deg);
+                            }
+                        }
+                    }
+
+                    &:active{
+                        span{
+                            border: 1px solid $original-Y;
+                            background: $original-Y;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

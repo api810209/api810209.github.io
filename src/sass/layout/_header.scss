@@ -2,7 +2,7 @@ header{
     width: 100%;
     @include flex($j-c:space-between, $a-i:center);
     padding: 32px 3% 0;
-    @include absolute($top:0, $left:0);
+    @include absolute($top:0, $left:0, $z-i:100);
     @extend %border-box;
 
     h1{

@@ -72,11 +72,16 @@ module.exports = {
             template: path.resolve(__dirname, './src/index.html'),
             minify: false,
             filename: 'index.html',
-            chunks: ['main',],
+            chunks: ['main','index'],
         }),
         new HtmlWebpackPartialsPlugin({
             path: path.join(__dirname, './src/layout/header.html'),
             location: 'header',
+            template_filename: ['index.html']
+        }),
+        new HtmlWebpackPartialsPlugin({
+            path: path.join(__dirname, './src/layout/banner.html'),
+            location: 'template-banner',
             template_filename: ['index.html']
         }),
         new HtmlWebpackPartialsPlugin({

@@ -15,6 +15,10 @@
 
 img{width: 100%;}
 
+body{
+    background: $original-light-gray;
+}
+
 body, .body-1{
     font-size: $body;
     line-height: 150%;
@@ -30,7 +34,7 @@ body, .body-1{
 h1, .h1{
     font-size: $h1;
     line-height: 86%;
-    @extend %optima-b;
+    @extend %optima;
     
     @include mini-pad{
         font-size: $h1-m;
